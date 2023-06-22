@@ -32,7 +32,7 @@ function TodoList() {
       </form>
       <ul>
         {todos.map((todo, index) => (
-          <li key={index}>
+          <li key={index}><input type='checkbox'/>
             {todo}{' '}
             <button onClick={() => handleTodoDelete(index)}>Delete</button>
           </li>
