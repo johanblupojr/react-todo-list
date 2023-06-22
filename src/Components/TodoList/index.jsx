@@ -14,7 +14,7 @@ function TodoList() {
         if (!inputValue.trim()) {
             return;
         }
-        const newTodo = { task: inputValue, isDone: "" };
+        const newTodo = { task: inputValue, class: "" };
         setTodos([...todos, newTodo]);
 
         setInputValue("");
@@ -26,12 +26,14 @@ function TodoList() {
         setTodos(newTodos);
     };
 
-    const checkBox = (e) => {
-        // console.log(e.target.id, e.target.checked);
-        const current = todos;
-        current[0].isDone = e.target.checked ? "strike" : "";
-        setTodos(current);
-        console.log(current);
+    const checkBox = (event, index) => {
+        const updatedTodos = todos.map((todo, i) => {
+            if (i === index) {
+                return { ...todo, class: event.target.checked ? "strike" : "" };
+            }
+            return todo;
+        });
+        setTodos(updatedTodos);
     };
 
     return (
@@ -43,8 +45,13 @@ function TodoList() {
             </form>
             <ul>
                 {todos.map((todo, index) => (
-                    <li key={index} className={todo.isDone}>
-                        <input type="checkbox" onChange={checkBox} id={index} />
+                    <li key={index} className={todo.class}>
+                        <input
+                            type="checkbox"
+                            onChange={(e) => {
+                                checkBox(e, index);
+                            }}
+                        />
                         {todo.task}
                         <button onClick={() => handleTodoDelete(index)}>Delete</button>
                     </li>
