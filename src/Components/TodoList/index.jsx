@@ -14,7 +14,7 @@ function TodoList() {
         if (!inputValue.trim()) {
             return;
         }
-        const newTodo = { task: inputValue, class: "" };
+        const newTodo = { task: inputValue, isDone: false };
         setTodos([...todos, newTodo]);
 
         setInputValue("");
@@ -29,7 +29,8 @@ function TodoList() {
     const checkBox = (event, index) => {
         const updatedTodos = todos.map((todo, i) => {
             if (i === index) {
-                return { ...todo, class: event.target.checked ? "strike" : "" };
+                todo.isDone = event.target.checked ? "strike" : "";
+                return { ...todo, isDone: event.target.checked };
             }
             return todo;
         });
@@ -45,11 +46,11 @@ function TodoList() {
             </form>
             <ul>
                 {todos.map((todo, index) => (
-                    <li key={index} className={todo.class}>
+                    <li key={index} className={todo.isDone ? "strike" : ""}>
                         <input
                             type="checkbox"
-                            onChange={(e) => {
-                                checkBox(e, index);
+                            onChange={(event) => {
+                                checkBox(event, index);
                             }}
                         />
                         {todo.task}
