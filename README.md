@@ -12,8 +12,8 @@ Solution
 
 1.Change the input type of setTodos from text to checkbox.
 2.Add a function in handleFormSubmit to handle changes to the input value and sets the inputValue state variable to the new value of the input field. (line 17-21)
-  Create a function to handle checking off a to-do item. This creates a copy of the todos array using the map method, updates the isDone property of the item at the specified index based on the checked 
-  status of the checkbox, and updates the todos state variable with the new array. (line 29-38) 
+  Create a function to handle checking off a to-do item. This creates a copy of the todos array using the map method, updates the isDone property of the item with a line-through style at the specified 
+  index based on the checked status of the checkbox, and updates the todos state variable with the new array. (line 29-38) 
 
 Answer to Question #3 of the Quiz:
 
